@@ -43,3 +43,6 @@ gem 'bootstrap-sass'
 gem 'devise'
 
 gem 'figaro', '1.0'
+
+# Faker Gem to create fake data
+gem 'faker'
