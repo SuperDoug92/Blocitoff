@@ -46,3 +46,11 @@ gem 'figaro', '1.0'
 
 # Faker Gem to create fake data
 gem 'faker'
+
+gem 'binding_of_caller'
+
+gem 'better_errors'
+
+gem 'byebug'
+
+gem 'whenever'

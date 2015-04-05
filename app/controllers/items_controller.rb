@@ -4,6 +4,22 @@ class ItemsController < ApplicationController
     @item = Item.new
   end
 
+  def destroy
+    @user = current_user
+    @item = @user.items(:id)
+    
+    if @item.destroy
+      flash[:notice] = "Item was removed."
+    else
+      flash[:error] = "Item couldn't be deleted. Try again."
+    end
+
+    respond_to do |format|
+      format.html
+      format.js
+    end
+  end
+
   def create
     @user = current_user
     @item = current_user.items.build(item_params)

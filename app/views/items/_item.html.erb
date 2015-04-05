@@ -3,8 +3,8 @@
   <div class="media-body">
     <p><%= item.name %></p>
     <small>
-      <%= item.user.name %> created <%= time_ago_in_words(item.created_at) %> ago
+      <%= pluralize(item.days_left,'day')%> remaining
+       | <%= link_to "Completed", [@user,item], method: :delete, remote: true, class: 'glyphicon glyphicon-ok'%>
     </small>
-
   </div>
 <% end %>
