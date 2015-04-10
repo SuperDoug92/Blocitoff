@@ -2,6 +2,7 @@ class Item < ActiveRecord::Base
   belongs_to :user
 
   def days_left 
-    (DateTime.now.to_date - created_at.to_date).to_i 
+    ((created_at.in_time_zone.to_date + 7.days)-DateTime.now.in_time_zone.to_date).to_int
+    
   end
 end
