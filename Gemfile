@@ -54,3 +54,5 @@ gem 'better_errors'
 gem 'byebug'
 
 gem 'whenever'
+
+gem 'active_model_serializers'
