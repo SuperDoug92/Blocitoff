@@ -8,11 +8,14 @@ Rails.application.routes.draw do
     resources :items, only: [:create, :destroy]
   end
 
-  root to: 'users#show'
+  authenticated :user do 
+    root to: 'users#show'
+  end
 
-  get 'welcome/index'
+  root to: 'welcome#index', as: :authenticated_root
 
-  get 'welcome/about'
+  get 'welcome/about' =>'welcome#about', as: :welcome_about
+
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
