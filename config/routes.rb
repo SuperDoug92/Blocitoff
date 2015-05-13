@@ -1,18 +1,35 @@
 Rails.application.routes.draw do
   
+  get 'list/new'
+
   get 'item/new'
 
   devise_for :users
 
   resources :users do
+    resources :lists
     resources :items, only: [:create, :destroy]
   end
 
-  root to: 'users#show'
+  authenticated :user do 
+    root to: 'users#show'
+  end
 
-  get 'welcome/index'
+  root to: 'welcome#index', as: :authenticated_root
 
-  get 'welcome/about'
+  get 'welcome/about' =>'welcome#about', as: :welcome_about
+
+  namespace :api, defaults: { format: :json } do
+    resources :users do
+       resources :lists
+     end
+     
+    resources :lists, only: [] do
+      resources :items, only: [:create]
+    end
+
+    resources :items, only: [:destroy]
+  end
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
